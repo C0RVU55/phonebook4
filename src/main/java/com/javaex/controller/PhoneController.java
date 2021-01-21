@@ -27,7 +27,7 @@ public class PhoneController {
 	//DB와 dao 간 커넥션을 매번 만드는 데는 리소스가 너무 많이 듦. 
 	//그래서 커넥션 몇개 미리 만들어서 커넥션풀로 관리하면서 갖고 있는 커넥션으로 돌려 쓰게 만들어줌 --> data source 라이브러리 추가
 	
-	//필드 --> @Authwired(자동으로 new하는 관리대상에 들어가게 함) + (이 dao를 관리하도록 함) --> dao 새로 선언X
+	//필드 --> @Authwired(자동으로 new하는 관리대상에 들어가게 함) + (이 dao를 관리하도록 함) --> 후에 dao 새로 선언X
 	@Autowired
 	private PhoneDao phoneDao;
 	
