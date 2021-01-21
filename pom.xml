@@ -49,6 +49,14 @@
 			<version>11.2.0.4</version>
 		</dependency>
 
+		<!-- spring jdbc (connection풀에 만들어서 자동으로 관리해주는 거) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

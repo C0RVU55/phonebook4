@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:context="http://www.springframework.org/schema/context"
-xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
@@ -16,12 +17,28 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-    <context:annotation-config />
+	<context:annotation-config />
 
-    <context:component-scan base-package="com.javaex"> <!-- ""주소 밑에 있는 파일 전부를 가리킴. 아래는 형태. ""아래 있는 파일(1) 중 아래 @가 붙은 거(2). -->
-            <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" /> <!-- DB관련 -->
-            <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-            <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
-    </context:component-scan>
+	<context:component-scan
+		base-package="com.javaex"> <!-- ""주소 밑에 있는 파일 전부를 가리킴. 아래는 형태. ""아래 있는 파일(1) 중 아래 @가 붙은 거(2). -->
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" /> <!-- DB관련 -->
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+
+	<!-- oracle datasource (dao, driver와 DB간의 세팅이라 applicationContext에서 다운받음)--> 
+	<bean id="oracleDatasource"
+		class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+		<property name="URL"
+			value="jdbc:oracle:thin:@localhost:1521:xe" /> <!-- 오라클 DB 드라이버 주소 : 톰캣구동될 때 자동으로 준비됨 -->
+		<property name="user" value="phonedb" /> <!-- DB 아이디 비번 주의 -->
+		<property name="password" value="phonedb" />
+		<property name="connectionCachingEnabled" value="true" />
+		<qualifier value="main-db" />
+	</bean>
+
 
 </beans>

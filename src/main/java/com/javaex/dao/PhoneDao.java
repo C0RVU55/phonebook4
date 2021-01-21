@@ -1,13 +1,15 @@
 package com.javaex.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.PhoneVo;
@@ -17,14 +19,13 @@ import com.javaex.vo.PhoneVo;
 public class PhoneDao {
 
 	// 필드
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String id = "phonedb"; // webdb아니고 phonedb
-	private String pw = "phonedb";
+	// DataSource클래스 선언해서 db접근하는 데 쓰면 됨. (import는 sql)
+	@Autowired
+	private DataSource dataSource; 
 
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	private Connection conn = null;
+	private PreparedStatement pstmt = null;
+	private ResultSet rs = null;
 
 	private int count = 0;
 
@@ -43,21 +44,15 @@ public class PhoneDao {
 	// DB접속
 	public void getConnection() {
 		try {
-			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName(driver);
-
-			// 2. Connection 얻어오기
-			conn = DriverManager.getConnection(url, id, pw);
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("error: 드라이버 로딩 실패 - " + e);
-		} catch (SQLException e) {
+			conn = dataSource.getConnection();
+			
+		} catch (SQLException e) { //null point 처리 알아서 해주니까 이거만 예외처리하면 됨.
 			System.out.println("error:" + e);
 		}
 	}
 
 	// 자원정리
-	public void close() {
+	public void close() { //데이터소스가 알아서 관리해주지만 개념적으로 끊는다고 봐야 돼서 남겨둠. 이제 이거 써도 진짜 끊어지진 않음.
 		try {
 			if (rs != null) {
 				rs.close();

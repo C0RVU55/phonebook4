@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +15,9 @@
 	</p>
 	
 	<form action="/phonebook4/phone/write" method="get">
-		이름(name): <input type="text" name="name" value=""> <br> <!-- name, value값 없으면 비워둠 -->
-		핸드폰(hp): <input type="text" name="hp" value=""> <br>
-		회사(company): <input type="text" name="company" value=""> <br>
+		이름(name): <input type="text" name="name"> <br> <!-- name, value값 없으면 비워둠 -->
+		핸드폰(hp): <input type="text" name="hp"> <br>
+		회사(company): <input type="text" name="company" > <br>
 		
 		<!-- action은 이제 필요없음 --> <br>		
 		<button type="submit">등록</button>

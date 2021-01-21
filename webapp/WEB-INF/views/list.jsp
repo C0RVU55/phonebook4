@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%--phonebook2 리스트 가져옴 --%>
 
 <!DOCTYPE html>
 <html>
@@ -30,14 +29,15 @@
 				<td>${vo.company }</td>
 			</tr>
 			<tr>
-				<td><a href="/phonebook4/phone/modifyForm?personId=${vo.personId }">수정</a></td> <%-- 수정할 때도 id 파라미터로 받음! 잊지말기! --%>
-				<td><a href="/phonebook4/phone/delete/${vo.personId }">삭제</a></td> <%--PathVariable 쓸 때 --%>
+				<td><a href="${pageContext.request.contextPath}/phone/modifyForm?personId=${vo.personId }">수정</a></td>
+				<%--톰캣이랑 연결되는 주소 '/프로젝트명'을 변수로 불러와주는 el. 일일이 숫자 안 바꿔도 됨.  --%>
+				<td><a href="${pageContext.request.contextPath}/phone/delete/${vo.personId }">삭제</a></td> <%--PathVariable 쓸 때 --%>
 			</tr>
 		</table>
 		<br>
 	</c:forEach>
 	
-	<a href="/phonebook4/phone/writeForm">추가번호 등록</a> 
+	<a href="${pageContext.request.contextPath}/phone/writeForm">추가번호 등록</a> 
 	<%-- 링크 걸 때 그냥 파일 위치 쓰면 안 되고 controller 거쳐서 action 파라미터값으로 들어가는 주소 써야됨 --%>
 </body>
 </html>
