@@ -30,14 +30,14 @@
 				<td>${vo.company }</td>
 			</tr>
 			<tr>
-				<td><a href="/phonebook3/phone/modifyForm?personId=${vo.personId }">수정</a></td> <%-- 수정할 때도 id 파라미터로 받음! 잊지말기! --%>
-				<td><a href="/phonebook3/phone/delete/${vo.personId }">삭제</a></td> <%--PathVariable 쓸 때 --%>
+				<td><a href="/phonebook4/phone/modifyForm?personId=${vo.personId }">수정</a></td> <%-- 수정할 때도 id 파라미터로 받음! 잊지말기! --%>
+				<td><a href="/phonebook4/phone/delete/${vo.personId }">삭제</a></td> <%--PathVariable 쓸 때 --%>
 			</tr>
 		</table>
 		<br>
 	</c:forEach>
 	
-	<a href="/phonebook3/phone/writeForm">추가번호 등록</a> 
+	<a href="/phonebook4/phone/writeForm">추가번호 등록</a> 
 	<%-- 링크 걸 때 그냥 파일 위치 쓰면 안 되고 controller 거쳐서 action 파라미터값으로 들어가는 주소 써야됨 --%>
 </body>
 </html>

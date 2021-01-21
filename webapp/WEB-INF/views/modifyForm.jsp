@@ -16,7 +16,7 @@
 		아래 항목을 수정하고 "수정"버튼을 누르세요.
 	</p>
 	
-	<form action="/phonebook3/phone/modify" method="get">
+	<form action="/phonebook4/phone/modify" method="get">
 		이름(name) : <input type="text" name="name" value="${pVo.name}"><br> 
 		핸드폰(hp) : <input type="text" name="hp" value="${pVo.hp}"><br>
 		회사(company) : <input type="text" name="company" value="${pVo.company}"><br>

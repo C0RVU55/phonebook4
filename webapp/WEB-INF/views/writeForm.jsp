@@ -14,7 +14,7 @@
 		아래 항목을 기입하고 "등록"버튼을 누르세요.
 	</p>
 	
-	<form action="/phonebook3/phone/write" method="get">
+	<form action="/phonebook4/phone/write" method="get">
 		이름(name): <input type="text" name="name" value=""> <br> <!-- name, value값 없으면 비워둠 -->
 		핸드폰(hp): <input type="text" name="hp" value=""> <br>
 		회사(company): <input type="text" name="company" value=""> <br>
@@ -25,6 +25,6 @@
 	
 	<br>
 	
-	<a href="/phonebook2/pbc?action=list">리스트 바로가기</a>
+	<a href="/phonebook4/phone/list">리스트 바로가기</a>
 </body>
 </html>

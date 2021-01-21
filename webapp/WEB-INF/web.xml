@@ -44,5 +44,15 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- Context Listener 등록 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value> <!-- applicationContext 위치 -->
+	</context-param>
+
 
 </web-app>

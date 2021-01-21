@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javaex.dao.PhoneDao;
 import com.javaex.vo.PhoneVo;
 
-//***controller임을 명시하기(어노테이션)***
-//컨트롤러는 주소임. 메소드 위에 주소인걸 @문법으로 붙임.
 @Controller
 @RequestMapping(value="/phone")
 public class PhoneController {
@@ -24,6 +23,10 @@ public class PhoneController {
 	// 여기서 new 안 하고 필요하다고 표시만 함. 이러면 디스패쳐서블렛이 알아서 new해서 주소 넣어줌 --> 새로운 dao를 만드는 게 아니라 기존 걸 돌려씀.
 	// 제어역전 : dao new하고 말고가 이거 역할이었는데 이제 디스패쳐서블렛이 하게 됨.
 	// private PhoneDao pDao; --> phonebook4
+	
+	//필드 --> @Authwired(자동으로 new하는 관리대상에 들어가게 함) + (이 dao를 관리하도록 함)
+	@Autowired
+	private PhoneDao phoneDao;
 	
 	// 생성자
 	// 메소드 겟셋
@@ -35,7 +38,6 @@ public class PhoneController {
 		System.out.println("list");
 		
 		//dao를 통해 리스트 가져옴
-		PhoneDao phoneDao = new PhoneDao();
 		List<PhoneVo> phoneList = phoneDao.getList();
 		System.out.println(phoneList.toString());
 		
@@ -51,7 +53,7 @@ public class PhoneController {
 	public String writeForm() {
 		System.out.println("writeForm");
 		
-		return "/WEB-INF/views/writeForm.jsp";
+		return "writeForm";
 	}
 	
 	//등록 (각 파라미터 꺼내기)
@@ -107,7 +109,7 @@ public class PhoneController {
 		//id를 찾을 수 없다고 오류났는데 vo랑 dao에서는 personId로 쓰던 걸 수정폼.jsp에서는 id로 써놔서 그런 거였음.
 		model.addAttribute("pVo", pVo);
 		
-		return "/WEB-INF/views/modifyForm.jsp";
+		return "modifyForm";
 		
 		/* 해설
 		먼저 html 가져오고 
